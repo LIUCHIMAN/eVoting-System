@@ -1,0 +1,72 @@
+{% extends "admin_base.html"%}
+{% block title %} eVoting System {% endblock %}
+{% block hello %}
+    <body class="center">
+        <ul>
+            <h1>Hello, {{user.username}}</user></h1>
+            <h2>Welcom to eVoting System</h2><br>
+        </ul>
+    </body>
+{% endblock %}
+
+
+
+{% block newvotingactivity %}
+    <body class="center">
+        <br><br><br>
+        
+    </body>
+{% endblock %}
+
+
+
+
+{% block contactcontent %}
+    <body class="center">
+        <br><br><br>
+        <p style="color: blue;">Contact Us : XXXX-XXXX</p>
+        <p>Email : admin@evoting.com</p>
+        <p>Address : XXX, XXXXXXXXXX, Hong Kong</p>
+    </body>
+{% endblock %}
+
+
+
+
+{% block votingactivitylist %}
+    <center>
+        <br><br>
+        <style>
+            table, th, td {border: 1px solid black;}
+            table {width: 100%;}
+            th, td {text-align: center; color: black;}
+        </style>
+        <h1 class="center">Voting Activity List</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Name of Voting Activity</th>
+                <th>No. of Question</th>
+                <th>Start Date and time</th>
+                <th>End Date and time</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.activate}}</td>
+                <td><a href = "Manager/EditUser/{{user._id}}"><button>Edit</button></a></td>
+                <td>
+                    <form method = "POST" action="{{ url_for('delUserPage', id = user._id) }}">
+                        <input type = "hidden" name = "csrf_token" value = "{{ csrf_token() }}">
+                        <input type = "submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endblock %}

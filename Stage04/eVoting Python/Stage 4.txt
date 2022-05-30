@@ -1,0 +1,3 @@
+Stage 4 - start to build the function for the system
+
+-building up the login function and sign up function
