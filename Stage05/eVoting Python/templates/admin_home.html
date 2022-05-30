@@ -1,0 +1,117 @@
+{% extends "admin_base.html"%}
+{% block title %} eVoting System {% endblock %}
+{% block hello %}
+    <body class="center">
+        <ul>
+            <h1>Hello, {{user.username}}</user></h1>
+            <h2>Welcom to eVoting System</h2><br>
+        </ul>
+    </body>
+{% endblock %}
+
+
+
+{% block newvotingactivity %}
+    <body class="center">
+        <br><br><br>
+        
+    </body>
+{% endblock %}
+
+
+
+
+{% block contactcontent %}
+    <body class="center">
+        <br><br><br>
+        <p style="color: blue;">Contact Us : XXXX-XXXX</p>
+        <p>Email : admin@evoting.com</p>
+        <p>Address : XXX, XXXXXXXXXX, Hong Kong</p>
+    </body>
+{% endblock %}
+
+
+
+
+{% block votingactivitylist %}
+    <center>
+        <br><br>
+        <style>
+            table, th, td {border: 1px solid black;}
+            table {width: 100%;}
+            th, td {text-align: center; color: black;}
+        </style>
+        <h1 class="center">Voting Activity List</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Name of Voting Activity</th>
+                <th>Question</th>
+                <th>Status</th>
+                <th>Start</th>
+                <th>End</th>                
+            </tr>
+            {% for vote in votinginfo %}
+            <tr>
+                <td>{{vote.votingname}}</td>
+                <td>{{vote.question}}</td>
+                <td>{{vote.status}}</td>
+                <td>
+                    {% if vote.status == 'Waiting to start' %}
+                    <a href = "/voting"><button>Start</button></a>
+                    {% endif %}
+                    {% if vote.status == 'In Progress' %}
+                    <a href = "/voting"><button>Continus</button></a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if vote.status == 'In Progress' %}
+                    <a href = "/voting"><button>End</button></a>
+                    {% endif %}
+                    {% if vote.status == 'End' %}
+                    <a href = "/voting"><button>Result</button></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endblock %}
+
+
+{% block ref %}
+    <center>
+        <br><br>
+        <style>
+            table, th, td {border: 1px solid black;}
+            table {width: 100%;}
+            th, td {text-align: center; color: black;}
+        </style>
+        <h1 class="center">Voting Activity List</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Name of Voting Activity</th>
+                <th>Question</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+                
+            </tr>
+            {% for vote in votinginfo %}
+            <tr>
+                <td>{{vote.votingname}}</td>
+                <td>{{vote.question}}</td>
+                <td>{{vote.status}}</td>
+                <td><a href = "Manager/EditUser/{{user._id}}"><button>Edit</button></a></td>
+                <td>
+                    <form method = "POST" action="{{ url_for('delUserPage', id = user._id) }}">
+                        <input type = "hidden" name = "csrf_token" value = "{{ csrf_token() }}">
+                        <input type = "submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endblock %}

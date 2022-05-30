@@ -1,0 +1,4 @@
+Stage 5 - start to build the admin page and the function that can do in admin page
+
+-create the admin page interface
+-building up the function that can do in admin page
