@@ -1,0 +1,32 @@
+{% extends "base.html"%}
+{% block title %} eVoting System {% endblock %}
+
+{% block content %} 
+<div class="card-wrapper">
+    <div class="card">
+        <h1 class="center">eVoting System</h1><br>
+        <h2 class="center">Please Login</h2><br>
+        <form method = "POST" action = "{{ url_for('home') }}">
+            {{ form.csrf_token }}
+            
+            {{ form.username.label }}<br>
+            {{ form.username }}<br>
+            <ul>
+                {% for error in form.username.errors %}
+                    <li style = "color : red;">{{ error }}</li>
+                {% endfor%}
+            </ul>
+
+            {{ form.password.label }}<br>
+            {{ form.password }}<br>
+            <ul>
+                {% for error in form.password.errors %}
+                    <li style = "color : red;">{{ error }}</li>
+                {% endfor%}
+            </ul>
+            
+            {{ form.loginBtn() }}
+        </form>
+    </div>
+</div>
+{% endblock %}

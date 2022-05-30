@@ -1,0 +1,10 @@
+Stage 3 - start to build up the database
+
+-buildibg up a database server by using monage database
+-create the system interface
+-need to install the monago database for local test
+
+
+For developing:
+need to install the env.
+pip install pymongo
