@@ -1,0 +1,136 @@
+{% extends "admin_base.html"%}
+{% block title %} eVoting System {% endblock %}
+{% block hello %}
+    <body class="center">
+        <ul>
+            <h1>Hello, {{user.username}}</user></h1>
+            <h2>Welcom to eVoting System</h2><br>
+        </ul>
+    </body>
+{% endblock %}
+
+
+
+{% block newvotingactivity %}
+    <body class="center">
+        <br><br><br>
+        <form method = "POST" action = "{{ url_for('newvoting') }}">
+            <td><a href = "/newvoting" method = "POST"><button>Create a new evoting</button></a></td>
+        </form>
+    </body>
+{% endblock %}
+
+
+
+
+{% block contactcontent %}
+    <body class="center">
+        <br><br><br>
+        <p style="color: blue;">Contact Us : XXXX-XXXX</p>
+        <p>Email : admin@evoting.com</p>
+        <p>Address : XXX, XXXXXXXXXX, Hong Kong</p>
+    </body>
+{% endblock %}
+
+
+
+
+{% block votingactivitylist %}
+    <center>
+        <br><br>
+        <style>
+            table, th, td {border: 1px solid black;}
+            table {width: 100%;}
+            th, td {text-align: center; color: black;}
+        </style>
+        <h1 class="center">Voting Activity List</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Name of Voting Activity</th>
+                <th>Question</th>
+                <th>Status</th>
+                <th>Tracker</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Delete</th>                
+            </tr>
+            
+            {% for vote in list %}
+                <tr>
+                    <td>{{vote.votingname}}</td>
+                    <td>{{vote.question}}</td>
+                    <td>{{vote.status}}</td>
+                    <td>
+                        {% if vote.status == 'Waiting to start' %}
+                        <a href = "voting/tra{{vote._id}}"><button>Generate</button></a>
+                        {% endif %}
+                        {% if vote.status == 'In Progress' %}
+                        <a href = "voting/tra{{vote._id}}"><button>Generate</button></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if vote.status == 'Waiting to start' %}
+                        <a href = "voting/sta{{vote._id}}"><button>Start</button></a>
+                        {% endif %}
+                        {% if vote.status == 'In Progress' %}
+                        <a href = "voting/con{{vote._id}}"><button>Continus</button></a>
+                        {% endif %}
+                        {% if vote.status == 'End' %}
+                        <a href = "voting/ree{{vote._id}}"><button>Resume</button></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if vote.status == 'In Progress' %}
+                        <a href = "voting/end{{vote._id}}"><button>End</button></a>
+                        {% endif %}
+                        {% if vote.status == 'End' %}
+                        <a href = "voting/res{{vote._id}}"><button>Result</button></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href = "voting/del{{vote._id}}"><button>Delete</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endblock %}
+
+
+{% block ref %}
+    <center>
+        <br><br>
+        <style>
+            table, th, td {border: 1px solid black;}
+            table {width: 100%;}
+            th, td {text-align: center; color: black;}
+        </style>
+        <h1 class="center">Voting Activity List</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Name of Voting Activity</th>
+                <th>Question</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+                
+            </tr>
+            {% for vote in votinginfo %}
+            <tr>
+                <td>{{vote.votingname}}</td>
+                <td>{{vote.question}}</td>
+                <td>{{vote.status}}</td>
+                <td><a href = "Manager/EditUser/{{user._id}}"><button>Edit</button></a></td>
+                <td>
+                    <form method = "POST" action="{{ url_for('delUserPage', id = user._id) }}">
+                        <input type = "hidden" name = "csrf_token" value = "{{ csrf_token() }}">
+                        <input type = "submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endblock %}

@@ -1,0 +1,4 @@
+Stage 6 - start to set up the function for the voting activity
+
+-generate the ballot tracker
+-encrypt the ballot and store

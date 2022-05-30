@@ -1,0 +1,48 @@
+{% extends "admin_base.html"%}
+{% block title %} eVoting System {% endblock %}
+
+{% block hello %}
+    <body class="center">
+        <ul>
+            <h1>{{votingInfo.votingname}}</h1>
+        </ul>
+    </body>
+{% endblock %}
+
+{% block tracker %}
+    <body class="center">
+        <ul>
+            <h1>Voting Page Tracker</h1>
+        </ul>
+        <ul>
+            <form method = "POST" action = "{{ url_for('votingtracker') }}">           
+                <input type="submit" value="Generate">
+            </form>
+        </ul>
+        <br>
+        <ul>
+            <h1>The following is your ballot tracker: </h1>
+        </ul>
+        <div class="card-wrapper">
+            <div class="card">
+                <ul>
+                    <h4>{{votingtracker}}</h4>
+                </ul>
+            </div>
+        </div>
+        <ul>
+            <button>Print the ballot tracker</button>
+        </ul>
+        <br><br><br>
+    </body>
+{% endblock %}
+
+
+{% block contactcontent %}
+    <body class="center">
+        
+        <p style="color: blue;">Contact Us : XXXX-XXXX</p>
+        <p>Email : admin@evoting.com</p>
+        <p>Address : XXX, XXXXXXXXXX, Hong Kong</p>
+    </body>
+{% endblock %}
