@@ -1,0 +1,10 @@
+Stage 2 - trying the blockchain system and start to develop the user page
+
+-set up some situation where the data has been amended, and the system would alert and pause
+-start to design and set up the user page
+
+For developing:
+need to install the env.
+pip install flask
+pip install flask_wtf
+pip install wtforms

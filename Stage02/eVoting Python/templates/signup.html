@@ -1,0 +1,49 @@
+{% extends "base.html"%}
+{% block title %} eVoting System {% endblock %}
+
+{% block content %} 
+<div class="card-wrapper">
+    <div class="card">
+        <h2 class="center">Create Admin Account</h2><br>
+        <form method = "POST" action = "{{ url_for('signup') }}">
+        
+            {{ form.username.label }}<br>
+            {{ form.username }}<br>
+            <ul>
+                {% for error in form.username.errors %}
+                    <li style = "color : red;">{{ error }}</li>
+                {% endfor%}
+            </ul>
+
+            {{ form.email.label }}<br>
+            {{ form.email }}<br>
+            <ul>
+                {% for error in form.email.errors %}
+                    <li style = "color : red;">{{ error }}</li>
+                {% endfor%}
+            </ul>
+        
+        
+            {{ form.password.label }}<br>
+            {{ form.password }}<br>
+            <ul>
+                {% for error in form.password.errors %}
+                    <li style = "color : red;">{{ error }}</li>
+                {% endfor%}
+            </ul>
+        
+        
+            {{ form.secpassword.label }}<br>
+            {{ form.secpassword }}<br>
+            <ul>
+                {% for error in form.secpassword.errors %}
+                    <li style = "color : red;">{{ error }}</li>
+                {% endfor%}
+            </ul>
+        
+            
+            {{ form.registerBtn() }}
+        </form>
+    </div>
+</div>
+{% endblock %}
