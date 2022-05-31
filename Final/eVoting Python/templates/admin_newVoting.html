@@ -1,0 +1,65 @@
+{% extends "admin_base.html"%}
+{% block title %} eVoting System {% endblock %}
+
+{% block hello %}
+    <body class="center">
+        <ul>
+            <h1>New Voting Activity</h1>
+        </ul>
+    </body>
+{% endblock %}
+
+{% block newvoting %}
+<div class="card-wrapper">
+    <div class="card">
+        
+        <form method = "POST" action = "{{ url_for('newvoting') }}">
+            {{ form.csrf_token }}
+        
+            {{ form.votingname.label }}  {{ form.votingname }}<br><br>
+            
+            {{ form.question.label }} {{ form.question }}<br><br>
+
+            {{ form.optionA.label }} {{ form.optionA }}<br><br>
+
+            {{ form.optionB.label }} {{ form.optionB }}<br><br>
+
+            {{ form.optionC.label }} {{ form.optionC }}<br><br>
+
+            {{ form.optionD.label }} {{ form.optionD }}<br><br>
+
+            {{ form.optionE.label }} {{ form.optionE }}<br><br>
+
+            {{ form.optionF.label }} {{ form.optionF }}<br><br>
+
+            {{ form.optionG.label }} {{ form.optionG }}<br><br>
+
+            {{ form.optionH.label }} {{ form.optionH }}<br><br>
+
+            <h5 class="center">Please fill in the option in order</h5>
+
+            <h6>***Save your private key first.***</h6>
+             
+            {{ form.submitBtn() }}
+        </form>
+    </div>
+</div>
+<h6>The following is your private key to encrypt these ballot, please save it.</h6>
+<style>
+    table, th, td {border: 1px solid black;}
+    table {width: 70%;}
+    th, td {text-align: left; color: rgb(163, 10, 10);}
+</style>
+<table align="center"><tr><th>{{ priv_key }}</th></tr></table>
+
+{% endblock %}
+
+
+{% block contactcontent %}
+    <body class="center">
+        <br><br><br>
+        <p style="color: blue;">Contact Us : XXXX-XXXX</p>
+        <p>Email : admin@evoting.com</p>
+        <p>Address : XXX, XXXXXXXXXX, Hong Kong</p>
+    </body>
+{% endblock %}

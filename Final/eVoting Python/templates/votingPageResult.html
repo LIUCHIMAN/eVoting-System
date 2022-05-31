@@ -1,0 +1,45 @@
+{% extends "admin_base.html"%}
+{% block title %} eVoting System {% endblock %}
+
+{% block hello %}
+    <body class="center">
+        <ul>
+            <h1>The Result of</h1>
+            <h1>{{votingInfo.votingname}}</h1>
+        </ul>
+    </body>
+{% endblock %}
+
+{% block result %}
+<body class="center">
+    <ul>
+        <form method = "POST" action = "{{ url_for('result') }}">           
+            <input type="submit" value="Result">
+        </form>
+    </ul>
+    <br>
+    <ul>
+        <h1>The following is result of the voting: </h1>
+    </ul>
+    <div class="card-wrapper">
+        <div class="card">
+            <ul>
+                {% for a in result %}
+                    <h4>{{a.0}} : {{a.1}}</h4>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <br><br><br>
+</body>
+{% endblock %}
+
+
+{% block contactcontent %}
+    <body class="center">
+        
+        <p style="color: blue;">Contact Us : XXXX-XXXX</p>
+        <p>Email : admin@evoting.com</p>
+        <p>Address : XXX, XXXXXXXXXX, Hong Kong</p>
+    </body>
+{% endblock %}
